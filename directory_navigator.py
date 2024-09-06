@@ -23,9 +23,14 @@ class directory_crawler:
 
     def changed_files(self, json_path):
         hashes = json.load(json_path)
-        changed_files = [
-            file for (file, hash) in self.crawl() if hashes[file] != hash]
-        return changed_files
+        for file, hash in self.crawl():
+            if hashes[file] != hash:
+                yield file
+                hashes[file] = hash
+
+    def create_json(self):
+        json = os.path.join(os.)
+        for text, hash in self.crawl():
 
 
 @contextmanager
