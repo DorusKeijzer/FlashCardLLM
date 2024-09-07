@@ -1,6 +1,6 @@
 from crawler import directory_crawler
 import anki_utils
-# import card_generator
+import card_generator
 
 from collections import deque
 import json
@@ -47,6 +47,12 @@ class dialogue_manager:
             print(f"{i}. {key}")
         if len(config.keys()) == 0:
             print("No coupled directories found")
+
+
+def fill_deck(dir):
+    dc = directory_crawler()
+    for file in dc.crawl(dir):
+        card = generate_card(file)
 
 
 def main():
